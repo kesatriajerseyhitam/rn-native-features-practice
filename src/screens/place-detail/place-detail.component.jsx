@@ -3,7 +3,7 @@ import {
   Text,
 } from 'react-native'
 
-const PlaceDetailScreen = ({}) => {{
+const PlaceDetailScreen = ({}) => {
   return <Text>Hallo mate</Text>;
 }
 
@@ -13,4 +13,4 @@ PlaceDetailScreen.navigationOptions = ({ navigation }) => {
   }
 }
 
-export default PlaceDetailScreen;
+export default PlaceDetailScreen

@@ -8,8 +8,8 @@ import {
   Button,
 } from 'react-native';
 
+import { addPlace } from '../../store/place/place.actions';
 import { useDispatch } from 'react-redux';
-import addPlace from '../../store/place/place.actions';
 
 import Color from '../../constants/Color';
 import styles from './new-place.styles';

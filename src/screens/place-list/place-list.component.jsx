@@ -12,13 +12,13 @@ import CustomHeaderButton from '../../components/custom-header-button/custom-hea
 import PlaceItem from '../../components/place-item/place-item.component';
 
 const PlaceListScreen = ({}) => {
-  const places = useSelector(state => state.place.places);
+  const places = useSelector(state => state.place.place);
   
   return (
     <FlatList 
       data={ places }
       keyExtractor={ item => item.id }
-      rederItem={ item => 
+      renderItem={ item =>
         <PlaceItem 
           address={ null }
           image={ null }

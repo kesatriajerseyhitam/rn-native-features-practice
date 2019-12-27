@@ -10,7 +10,7 @@ const placeReducer = (state = initialState, action) => {
     case placeActionTypes.ADD_PLACE:
       const place = new Place(new Date().toString(), action.placeData.title);
       return {
-        places:[...state.place, place] 
+        place: [...state.place, place] 
       }
     default:
       return initialState
