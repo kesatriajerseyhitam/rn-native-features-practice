@@ -17,9 +17,6 @@ const {
 } = styles;
 
 const PlaceItem = ({ address, image, onSelect, title }) => {
-  console.log(`Ini title di dalem place item`);
-  console.log(title);
-  
   return (
     <TouchableOpacity 
       onPress={ onSelect } 
