@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import Color from '../../constants/Color';
+import Color from '../../utils/Color';
  
 const { primary } = Color;
 

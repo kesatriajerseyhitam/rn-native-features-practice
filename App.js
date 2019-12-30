@@ -3,7 +3,7 @@ import Navigation from './src/routes/navigation';
 
 import store from './src/store/store';
 import { Provider } from 'react-redux';
-import { init } from './src/utils/fb';
+import { init } from './src/utils/db';
 
 init().then(() => {
   console.log(`Database initialized`)

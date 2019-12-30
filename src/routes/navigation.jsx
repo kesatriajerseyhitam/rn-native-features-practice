@@ -6,7 +6,7 @@ import MapScreen from '../screens/map/map.component';
 import NewPlaceScreen from '../screens/new-place/new-place.component';
 import PlaceDetailScreen from '../screens/place-detail/place-detail.component';
 import PlaceListScreen from '../screens/place-list/place-list.component';
-import Color from '../constants/Color';
+import Color from '../utils/Color';
 
 const { primary } = Color;
 

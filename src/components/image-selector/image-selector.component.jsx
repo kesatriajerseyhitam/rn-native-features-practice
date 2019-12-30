@@ -10,7 +10,7 @@ import {
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
 
-import Color from '../../constants/Color';
+import Color from '../../utils/Color';
 import styles from './image-selector.styles';
 
 const {

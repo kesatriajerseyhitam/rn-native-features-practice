@@ -9,12 +9,16 @@ const placeReducer = (state = initialState, action) => {
   switch (action.type) {
     case placeActionTypes.ADD_PLACE:
       const place = new Place(
-        new Date().toString(), 
+        action.placeData.id.toString(), 
         action.placeData.title,
         action.placeData.image,
       );
       return {
         place: [...state.place, place] 
+      }
+    case placeActionTypes.FETCH_PLACE:
+      return {
+        places: action.places.map(place => new Place(place.id.toString(), place.title, place.imageUri))
       }
     default:
       return initialState

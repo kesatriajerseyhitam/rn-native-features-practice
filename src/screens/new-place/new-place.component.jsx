@@ -11,8 +11,9 @@ import {
 import { addPlace } from '../../store/place/place.actions';
 import { useDispatch } from 'react-redux';
 
-import Color from '../../constants/Color';
+import Color from '../../utils/Color';
 import ImageSelector from '../../components/image-selector/image-selector.component';
+import LocationPicker from '../../components/location-picker/location.picker.component';
 import styles from './new-place.styles';
 
 const {
@@ -48,6 +49,7 @@ const NewPlaceScreen = ({ navigation }) => {
           value={ titleValue }
         />
         <ImageSelector onImageTaken={ imageTakenHandler } />
+        <LocationPicker />
         <Button 
           color={ primary }
           onPress={ () => savePlace() }
