@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Alert,
   Button, 
@@ -9,8 +9,6 @@ import {
 
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
-
-
 
 import Color from '../../constants/Color';
 import styles from './image-selector.styles';
@@ -26,6 +24,8 @@ const {
 } = styles;
 
 const ImageSelector = ({}) => {
+  const [pickedImage, setPickedImage] = useState('');
+
   const askPermission = async () => {
     const result = await Permissions.askAsync(Permissions.CAMERA_ROLL);
     if (result.status !== 'granted') {
@@ -42,7 +42,15 @@ const ImageSelector = ({}) => {
 
   const takeImageHandler = async () => {
     const allowed = await askPermission();
-    if (allowed) ImagePicker.launchCameraAsync();
+    if (allowed) {
+      const image = await ImagePicker.launchCameraAsync({
+        allowsEditing: true,
+        aspect: [16, 9],
+        quality: 0.5
+      });
+
+      setPickedImage(image.uri)
+    }
   }
   
   return (
