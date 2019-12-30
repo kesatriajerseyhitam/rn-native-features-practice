@@ -8,7 +8,11 @@ const initialState = {
 const placeReducer = (state = initialState, action) => {
   switch (action.type) {
     case placeActionTypes.ADD_PLACE:
-      const place = new Place(new Date().toString(), action.placeData.title);
+      const place = new Place(
+        new Date().toString(), 
+        action.placeData.title,
+        action.placeData.image,
+      );
       return {
         place: [...state.place, place] 
       }

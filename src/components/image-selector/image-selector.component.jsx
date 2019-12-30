@@ -23,8 +23,8 @@ const {
   imageStyle,
 } = styles;
 
-const ImageSelector = ({}) => {
-  const [pickedImage, setPickedImage] = useState('');
+const ImageSelector = ({ onImageTaken }) => {
+  const [pickedImage, setPickedImage] = useState();
 
   const askPermission = async () => {
     const result = await Permissions.askAsync(Permissions.CAMERA_ROLL);
@@ -50,16 +50,21 @@ const ImageSelector = ({}) => {
       });
 
       setPickedImage(image.uri)
+      onImageTaken(image.uri)
     }
   }
   
   return (
     <View style={ imagePicker }>
       <View style={ imagePreview }>
-        <Text>No image picked yet.</Text>
+      {
+        !pickedImage ? 
+        <Text>No image picked yet.</Text> :
         <Image
+          source={{ uri: pickedImage }}
           style={ imageStyle }
         />
+      }
       </View>
       <View style={{ width: '100%' }}>
         <Button 

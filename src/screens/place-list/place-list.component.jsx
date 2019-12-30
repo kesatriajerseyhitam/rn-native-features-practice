@@ -21,7 +21,7 @@ const PlaceListScreen = ({}) => {
       renderItem={ item =>
         <PlaceItem 
           address={ null }
-          image={ null }
+          image={ item.item.imageUri }
           onSelect={() => {
             navigation.navigate('PlaceDetail', {
               placeId: item.item.id,

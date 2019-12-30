@@ -25,11 +25,13 @@ const {
 } = styles;
 
 const NewPlaceScreen = ({ navigation }) => {
+  const [selectedImage, setSelectedImage] = useState();
   const [titleValue, setTitleValue] = useState('');
   const dispatch = useDispatch();
 
+  const imageTakenHandler = uri => setSelectedImage(uri);
   const savePlace = () => {
-    dispatch(addPlace(titleValue));
+    dispatch(addPlace(titleValue, selectedImage));
     navigation.goBack();
   }
   const titleChangeHandler = text => setTitleValue(text);
@@ -45,7 +47,7 @@ const NewPlaceScreen = ({ navigation }) => {
           style={ textInput }
           value={ titleValue }
         />
-        <ImageSelector />
+        <ImageSelector onImageTaken={ imageTakenHandler } />
         <Button 
           color={ primary }
           onPress={ () => savePlace() }
