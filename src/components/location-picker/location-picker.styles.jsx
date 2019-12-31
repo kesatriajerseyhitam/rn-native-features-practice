@@ -2,6 +2,11 @@ import { StyleSheet } from 'react-native';
 
 
 const styles = StyleSheet.create({
+  actions: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    width: '100%',
+  },
   locationPicker: {
     marginBottom: 15
   },

@@ -50,6 +50,7 @@ const ImageSelector = ({ onImageTaken }) => {
       });
 
       setPickedImage(image.uri)
+      console.log(pickedImage);
       onImageTaken(image.uri)
     }
   }

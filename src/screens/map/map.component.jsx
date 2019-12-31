@@ -1,10 +1,21 @@
 import React from 'react';
-import {
-  Text,
-} from 'react-native';
+import MapView from 'react-native-maps';
+
+import styles from './map.styles';
+
+const {
+  mapStyle
+} = styles;
 
 const MapScreen = ({}) => {
-  return <Text>Hallo Mate This Map Screem</Text>
+  const mapRegion = {
+    latitude: 37.78,
+    latitudeDelta: 0.0922,
+    longitude: -122.43,
+    longitudeDelta: 0.0421,
+  };
+
+  return <MapView region={ mapRegion } style={ mapStyle } />
 }
 
 export default MapScreen;

@@ -1,25 +1,26 @@
 import React, { useState } from 'react';
 import {
-  AcitivityIndicator,
+  ActivityIndicator,
   Alert,
   Button,
   Text,
   View,
-  ActivityIndicator,
 } from 'react-native';
 
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
 import Color from '../../utils/Color';
 import styles from './location-picker.styles';
+import MapPreview from '../map-preview/map-preview.component';
 
 const { primary } = Color;
 const {
+  actions,
   locationPicker,
   mapPreview
 } = styles;
 
-const LocationPicker = ({}) => {
+const LocationPicker = ({ navigation }) => {
   const [isFetching, setIsFetching] = useState(false)
   const [pickedLocation, setPickedLocation] = useState();
 
@@ -60,24 +61,33 @@ const LocationPicker = ({}) => {
     setIsFetching(false);
   }
 
+  const pickOnMapHandler = () => navigation.navigate('Map');
+
   return (
     <View style={ locationPicker }>
-      <View style={ mapPreview }>
+      <MapPreview 
+        location={ pickedLocation }
+        onPress={ pickOnMapHandler }
+        style={ mapPreview } 
+      >
         {
           isFetching ?
           <ActivityIndicator size="large" color={ primary } /> :
-          pickedLocation ? 
-          <Text>
-            Latitude: { pickedLocation.lat }, Longitude: { pickedLocation.lng }
-          </Text> :
           <Text>No Location chosen yet!</Text>
         }
+      </MapPreview>
+      <View style={ actions }>
+        <Button 
+          color={ primary }
+          onPress={ getLocationHandler }
+          title="Get User Location"
+        />
+        <Button 
+          color={ primary }
+          onPress={ pickOnMapHandler }
+          title="Pick On Map"
+        />
       </View>
-      <Button 
-        color={ primary }
-        onPress={ getLocationHandler }
-        title="Get User Location"
-      />
     </View>
   )
 }

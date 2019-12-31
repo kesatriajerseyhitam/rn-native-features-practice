@@ -12,6 +12,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginBottom: 10,
     width: '100%'
+  },
+  imageStyle: {
+    height: '100%',
+    width: '100%',
   }
 })
 
