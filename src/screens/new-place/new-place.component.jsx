@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { 
+  useCallback,
+  useState,
+ } from 'react';
 import {
-  Platform,
   ScrollView,
   Text,
   TextInput, 
@@ -22,24 +24,30 @@ const {
 const {
   form,
   label,
-  scroll,
   textInput,
 } = styles;
 
 const NewPlaceScreen = ({ navigation }) => {
   const [selectedImage, setSelectedImage] = useState();
+  const [selectedLocation, setSelectedLocation] = useState();
   const [titleValue, setTitleValue] = useState('');
   const dispatch = useDispatch();
 
   const imageTakenHandler = uri => setSelectedImage(uri);
+
+  const locationPickerHandler = useCallback(location => {
+    setSelectedLocation(location);
+  }, []);
+  
   const savePlace = () => {
-    dispatch(addPlace(titleValue, selectedImage));
+    dispatch(addPlace(titleValue, selectedImage, selectedLocation));
     navigation.goBack();
   }
+  
   const titleChangeHandler = text => setTitleValue(text);
   
   return (
-    <ScrollView style={ scroll }>
+    <ScrollView>
       <View style={ form }>
         <Text style={ label }>
           New List Screen
@@ -50,7 +58,10 @@ const NewPlaceScreen = ({ navigation }) => {
           value={ titleValue }
         />
         <ImageSelector onImageTaken={ imageTakenHandler } />
-        <LocationPicker navigation={ navigation }/>
+        <LocationPicker 
+         onLocationPicked={ locationPickerHandler }
+          navigation={ navigation }
+        />
         <Button 
           color={ primary }
           onPress={ () => savePlace() }

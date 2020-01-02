@@ -1,4 +1,7 @@
-import React, { useState } from 'react';
+import React, { 
+  useEffect,
+  useState,
+} from 'react';
 import {
   ActivityIndicator,
   Alert,
@@ -17,12 +20,20 @@ const { primary } = Color;
 const {
   actions,
   locationPicker,
-  mapPreview
+  mapPreviewStyle,
 } = styles;
 
-const LocationPicker = ({ navigation }) => {
+const LocationPicker = ({ navigation, onLocationPicked }) => {
   const [isFetching, setIsFetching] = useState(false)
   const [pickedLocation, setPickedLocation] = useState();
+  const mapPickedLocation = navigation.getParam('pickedLocation');
+
+  useEffect(() => {
+    if (mapPickedLocation) {
+      setPickedLocation(mapPickedLocation);
+      onLocationPicked(mapPickedLocation);
+    }
+  }, [mapPickedLocation, onLocationPicked]);
 
   const verifyPermissions = async () => {
     const result = await Permissions.askAsync(Permissions.LOCATION);
@@ -34,7 +45,6 @@ const LocationPicker = ({ navigation }) => {
       )
       return false;
     }
-
     return true;
   };
 
@@ -50,7 +60,11 @@ const LocationPicker = ({ navigation }) => {
       setPickedLocation({
         lat: location.coords.latitude,
         lng: location.coords.longitude,
-      })
+      });
+      onLocationPicked({
+        lat: location.coords.latitude,
+        lng: location.coords.longitude,
+      });
     } catch (err) {
       Alert.alert(
         `Could not fetch location`,
@@ -68,7 +82,7 @@ const LocationPicker = ({ navigation }) => {
       <MapPreview 
         location={ pickedLocation }
         onPress={ pickOnMapHandler }
-        style={ mapPreview } 
+        style={ mapPreviewStyle } 
       >
         {
           isFetching ?

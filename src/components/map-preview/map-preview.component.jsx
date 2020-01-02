@@ -2,7 +2,6 @@ import React from 'react';
 import {
   Image,
   TouchableOpacity,
-  View,
 } from 'react-native';
 
 import ENV from '../../../env';
