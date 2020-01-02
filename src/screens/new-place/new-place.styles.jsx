@@ -8,6 +8,10 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginBottom: 15,
   },
+  scroll: {
+    flex: 1,
+    marginBottom: 30,
+  },
   textInput: {
     borderBottomColor: '#ccc',
     borderBottomWidth: 1,

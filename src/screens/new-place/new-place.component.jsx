@@ -22,6 +22,7 @@ const {
 const {
   form,
   label,
+  scroll,
   textInput,
 } = styles;
 
@@ -38,7 +39,7 @@ const NewPlaceScreen = ({ navigation }) => {
   const titleChangeHandler = text => setTitleValue(text);
   
   return (
-    <ScrollView>
+    <ScrollView style={ scroll }>
       <View style={ form }>
         <Text style={ label }>
           New List Screen
